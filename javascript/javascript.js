@@ -186,3 +186,91 @@
 // - maintaining state in async world
 // - setTimeouts
 // - Iterators
+
+// setTimeout
+
+// function x(){
+//     var i=1;
+//     setTimeout(() => {
+//         console.log(i)
+//     }, 3000);
+//     console.log("Hello JS")
+// }
+
+// function x(){
+//     for(var i=1;i<=5;i++){        //6
+//     setTimeout(() => {            //6
+//         console.log(i)            //6   Pointing to refrence of i
+//     }, i*1000);                   //6
+// }                                 //6
+//     console.log("Hello JS")
+// }
+
+// function x(){
+//     for(let i=1;i<=5;i++){        //1   block scope, function will form closure to new copy of i
+//     setTimeout(() => {            //2    five closures will formed having different refrence to i
+//         console.log(i)            //3   Pointing to refrence of i
+//     }, i*1000);                   //4
+// }                                 //5
+//     console.log("Hello JS")
+// }
+
+// function x(){
+//     for(var i=1;i<=5;i++){          //1    with var create closure to get same output
+//     function close(x){              //2   remebers new copy of x
+//         setTimeout(() => {          //3            
+//             console.log(x)          //4  
+//         }, x*1000);                 //5
+//     }
+//     close(i)
+//     }                                               
+//     console.log("Hello JS")
+// }
+
+// a()
+// b()   // Type Error ; b is not a function
+// // Function Statement aka Function Declaration
+// function a(){
+//     console.log("a called")
+// }                                        
+// a()              Difference between function declaration and function expression is hoisting  a works but b throws error
+// // Function Expression       
+// var b= function(){
+//     console.log("b called")
+// }
+// b()
+
+// Anonymous function  (can be used a value only like above)
+// function (){  // Syntax Error; Functio statement requires a function name
+
+// }
+
+// Named Function Expression
+// var b= function xyz(){
+//     console.log("b called")
+// }
+// b()  // b called
+// xyz() // Refrence Error xyz is not defined
+
+// Parameters and arguments
+// var b= function xyz(params){
+//     console.log("b called")
+// }
+// b(args)
+
+// First Class Functions   // Functions are first class citizens
+// Passing another function inside function and we can return a function from a function
+// Ability of function to used as value , passed as argument and can be returned out from a function
+// var b= function xyz(params){
+//     console.log("b called",params)
+// }
+// b(function(){})
+
+// var b= function (params){
+//     return function(){
+
+//     }
+// }
+// console.log(b())
+
+// Arrow functions
