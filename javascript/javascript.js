@@ -274,3 +274,57 @@
 // console.log(b())
 
 // Arrow functions
+// What is callback function ?
+
+// setTimeout(() => {
+//     console.log("timer")
+// }, 5000);
+// function x(y){
+// console.log("x")
+// y()
+// }
+// x(function y(){
+//     console.log("y")
+// })
+
+// Blocking the main thread 
+// Closures Demo with event Listeners
+// function attachEventListeners(){ 
+// let count=0;
+// document.getElementById("ClickMe").addEventListener("click",function xyz(){
+//     console.log("Button Clicked",++count)
+// })
+// }
+// attachEventListeners()
+
+// Garbage Collection and remove Event Listeners
+// Event Listeners are heavy
+
+// Aynchronous js and event loop
+// function a(){
+//     console.log("a")
+// }
+// a();
+// console.log("End")
+
+// A global execution context gets created inside call stack, a will be allocated memory and function is stored
+// a() in call stack above GEC and a get printed in console then a context will get remove and then it will print End and call stack will be empty
+// call inside js engine and js engine inside browser
+// url, timer, localstorage in browser
+// web apis - setTimeout,DOM API,fetch,localstorage,console,location
+// browser wraps in a global object called window(windoe.setTimeout or setTimeout)
+
+// console.log("start")
+// setTimeout(function cb() {
+//     console.log("callback")      //  callback queue, event loop - monitor call stack and callback queue(all cb function which comes through promises)
+// },5000 );
+// console.log("End")
+
+// console.log("start")
+// setTimeout(function cbT() {
+//     console.log("callback setTimeOut")      
+// },5000 );
+// fetch("https://api.netflix.com").then(function cbF(){     // microTask Queue (more priority than callback queue)
+//     console.log("CB Netflix")                              // microTask inside microTask leads to starvation for callback queue
+// })
+// console.log("End")
