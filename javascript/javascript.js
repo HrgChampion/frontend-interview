@@ -328,3 +328,142 @@
 //     console.log("CB Netflix")                              // microTask inside microTask leads to starvation for callback queue
 // })
 // console.log("End")
+
+// Trust issues with SetTimeOut
+// console.log("start")
+
+// setTimeout(function cb(){
+//     console.log("callback")
+// },5000)
+
+// console.log("end")
+
+
+// // time waste
+// let startDate=new Date().getTime();      // start
+// let endDate= startDate;                  // end
+// while(endDate<startDate +10000){         // while expires
+//     endDate=new Date().getTime();        // callback
+
+// }
+// console.log("while expires")
+
+
+// console.log("start")             // start
+// setTimeout(function cb() {       // end
+//     console.log("callback")      // callback
+// },0 );
+// console.log("End")
+
+// Higher Order Functions
+// Function which takes another function as argument or return a function from it is known as hof
+
+// const radius=[3,2,1,4];
+
+// const calculateArea= function (radius){
+//     const output= [];
+//     for (let i=0;i<radius.length;i++){
+//         output.push(Math.PI * radius[i] * radius[i])
+//     }
+//     return output;
+// }
+// console.log(calculateArea(radius))
+
+// const calculateCircum= function (radius){
+//     const output= [];
+//     for (let i=0;i<radius.length;i++){
+//         output.push(2 * Math.PI * radius[i])
+//     }
+//     return output;
+// }
+// console.log(calculateCircum(radius))
+
+// const calculateDia= function (radius){
+//     const output= [];
+//     for (let i=0;i<radius.length;i++){
+//         output.push(2 * radius[i])
+//     }
+//     return output;
+// }
+// console.log(calculateDia(radius))
+
+// Above code is not good
+// instead
+// const radius=[3,2,1,4];
+
+// const area = function(radius){
+//     return Math.PI * radius * radius;
+// }
+// const circum = function(radius){
+//     return 2 * Math.PI * radius;
+// }
+
+// const diameter = function(radius){
+//     return 2*radius;
+// }
+
+// const calculate= function(radius,logic){
+//     const output=[];
+//     for(let i=0;i<radius.length;i++){
+//         output.push(logic(radius[i]))
+//     }
+//     return output;
+// }
+// console.log(calculate(radius,area))   || console.log(radius.map(area))
+
+// console.log(calculate(radius,circum))
+// console.log(calculate(radius,diameter))
+
+// Array.prototype.calculate= function(logic){
+//     const output=[];
+//     for(let i=0;i<this.length;i++){
+//         output.push(logic(this[i]))
+//     }
+//     return output;
+// }
+// console.log(radius.calculate(area))
+
+// JS Engine chrome(V8)
+// Code -> Parsing-(AST Abstract Syntax Tree) -> Compilation (interpretter(Ignition) and compiler(Turbo fan) both) -> Execution (Memory Heap and Call stack)
+// JIT - just in time compilation
+// Garbage Collector - Mark and Sweep algorithm (Inlining,Copy elision and inline caching)
+
+// Callback Hell (Pyramid of doom)  --> Inversion of control
+// const cart =["shoes","pants","kurta"];
+// api.createOrder(cart,function(){
+//     api.proceedToPayment(function(){
+//         api.showOrderSummary(function(){
+//             api.updateWallet()
+//         })
+//     })
+// })
+
+// Promises
+// Using callback
+// const cart=["shoes","pants","kurta"];
+// createOrder(cart,function(orderId){
+//     proceedToPayment(orderId)
+// }) 
+// // Using Promises
+// const promise=createOrder(cart);
+// promise.then(function(orderId){
+//     proceedToPayment(orderId)
+// })
+
+// const Github_api='https://api.github.com/users/HrgChampion'
+// const user=fetch(Github_api)
+// console.log(user) // Promise <Pending>
+// user.then(function(data){
+// console.log(data)
+// })
+
+// 3 stages of promise - pending, fulfilled,rejected
+// promise data is immutable
+// Promise is an object representing the eventual completion or failure of an asynchronous operation
+// Promise chaining
+// createOrder(cart)
+// .then(function(orderId){
+//    return proceedToPayment(orderId)
+// }).then(function(paymentInfo){
+//    return showOrderSummary(paymentInfo)
+// })
