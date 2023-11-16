@@ -467,3 +467,203 @@
 // }).then(function(paymentInfo){
 //    return showOrderSummary(paymentInfo)
 // })
+//Creating a promise, promise chaining, error handling
+
+// const cart=["shoes","pants","jeans"];
+// createOrder(cart)
+// .then(function(orederId){
+//     console.log(orderId)
+//     return orderId;
+//    // proceedToPayment(orderId);
+// }).then(function(){
+//    return proceedToPayment(orderId);
+// }).then(function(paymentInfo){
+//  console.log(paymentInfo)
+//  return paymentInfo;
+// })
+// .catch(function(err){
+// console.log(err)
+// })
+
+// function createOrder(cart){
+// const pr= new Promise(function(resolve,reject){
+//     // createOrder
+//     // validateCart
+//     // orderId
+//     if(!validate(cart)){
+//         const err= new Error("Cart is not valid")
+//         reject(err)
+//     }
+//     const orderId="12345";
+//     if(orderId){
+//         resolve(orderId)
+//     }
+// })
+// }
+
+// function proceedToPayment(orderId){
+// return new Promise(function(resolve,reject){
+//     resolve("Payment Successful")
+// })
+// }
+
+// function validateCart(cart){
+//     return true
+//    // return false
+// }
+
+// async await
+// always returns a promise (I you return a value then it will automatically wrap a value in promise and then return the promise)
+// async is a keyword user to create async function 
+// asyc await is syntactical sugar over promise
+// const p= new Promise((resolve,reject)=>{
+//     resolve("Promise resolved value !!")
+// })
+// async function getData(){
+// return p
+// // return "Namaste";
+// }
+// const dataPromise = getData();
+// dataPromise.then((res)=>console.log(res))  // Promise resolved value !!
+
+// const p= new Promise((resolve,reject)=>{
+//     resolve("Promise resolved value !!")
+//     console.log(val)
+// })
+// async function handlePromise(){
+// const val= await p;            // await in front of promise that has to be resolved
+// }
+
+// const p1= new Promise((resolve,reject)=>{
+//     setTimeout(() => {
+//     resolve("Promise resolved value !!")   
+//     }, 10000);
+// })
+
+// const p2= new Promise((resolve,reject)=>{
+//     setTimeout(() => {
+//     resolve("Promise resolved value !!")   
+//     }, 5000);
+// })
+
+// async function handlePromise(){
+//     console.log("Hello World !!")
+//     // JS Engine was waiting for promise to resolved
+//     const val=await p1;
+//     console.log("Namste JS")          // Namste JS(after 10s)
+//     console.log(val)                  // Promise resolved value !!(after 10s)
+
+//     const val2=await p2;
+//     console.log("Namste JS2")          // Namste JS2(after 10s)
+//     console.log(val2)                  // Promise resolved value !!(after 10s)                
+// }
+
+// function getData(){
+//     // JS Engine will not wait for promise to be resolved
+//     p.then((res)=>console.log(res))             // Promise resolved value !!(after 10 s)
+//     console.log("Namaste Javascript")           // Namaste Javascript(immediately)
+// }
+// const API_URL="https://api.github.com/users/HrgChampion"
+// async function handlePromise(){
+//     try{
+// const data=await fetch(API_URL);
+// const jsonValue= await data.json();
+// console.log(jsonValue)
+//     }catch(err){
+//      console.log(err)
+//     }
+// // fetch() =>Response.json() =>jsonValue
+// }
+// handlePromise()
+
+//map,filter and reduce
+// const arr=[5,1,3,2,6];
+// // Double -[10,2,6,4,36]
+// function double(x){
+//     return x *2;
+// }
+// const output= arr.map(double);
+// const filter_output=arr.filter((x)=>x%2===1)
+// console.log(output,filter_output)
+
+// function findSum(arr){
+//     let sum=0;
+//     for(let i=0;i<arr.length;i++){
+//         sum=sum+arr[i]
+//     }
+//     return sum
+// }
+// console.log(findSum(arr))
+// const output=arr.reduce(function(acc,curr){
+// acc=acc+curr
+// return acc;
+// },0)
+// console.log(output)
+
+// const users=[
+//     {firstName:"Rahul",lastName:"Sharma",age:26},
+//     {firstName:"Donald",lastName:"trump",age:75},
+//     {firstName:"Elon",lastName:"musk",age:50},
+//     {firstName:"Deepika",lastName:"saini",age:26}
+// ]
+// // {26:2,75:1,50:1}
+
+// const output=users.reduce(function(acc,curr){
+// if(acc[curr.age]){
+//     acc[curr.age]=acc[curr.age]+1
+// }else{
+//     acc[curr.age]=1
+// }
+// },{})
+
+// users.filter((x)=>x.age <30).map(x=>x.firstName)
+
+// Promise API's
+// Promise.all([p1,p2,p3])
+// If all get max then it will take max time else if any promise will get fail then it will fail all with minm time error occured.
+// Promise.allSettled([p1,p2,p3])
+// After failure it will wait for all promise to get settled irrespective of success or failure and return an array
+// Promise.race([p1,p2,p3])
+// as soon as one promise will get fulfill it will give the value , return result of first settled promise
+// Promise.any([p1,p2,p3])
+// It will wait for first successful promise to get resolved
+// If all get fail then it will return an aggregated error(object) which has errors[].
+
+// const p1= new Promise((resolve,reject)=>{
+//     setTimeout(() => {
+//         resolve("P1 success")
+//     }, 3000);
+// })
+
+// const p2= new Promise((resolve,reject)=>{
+// //    setTimeout(() => {resolve("P2 success")}, 1000);
+//     setTimeout(() => {reject("P2 fail")}, 1000);
+// })
+
+// const p3= new Promise((resolve,reject)=>{
+//     setTimeout(() => {
+//         resolve("P3 success")
+//     }, 2000);
+// })
+
+// Promise.all([p1,p2,p3]).then((res)=>console.log(res)).catch(err=>console.error(err))
+// Promise.allSettled([p1,p2,p3]).then((res)=>console.log(res)).catch(err=>console.error(err))
+// Promise.race([p1,p2,p3]).then((res)=>console.log(res)).catch(err=>console.error(err))
+// Promise.any([p1,p2,p3]).then((res)=>console.log(res)).catch(err=>console.error(err))
+
+// Constructor function
+// function Counter(){
+//     var count=0;
+//     this.incrementCounter= function(){
+//         count++;
+//         console.log(count)
+//     }
+//     this.decrementCounter=function(){
+//         count--;
+//         console.log(count)
+//     }
+// }
+// var counter1=new Counter();
+// counter1.incrementCounter();  //1
+// counter1.incrementCounter();  //2
+// counter1.decrementCounter();  //1
