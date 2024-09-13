@@ -667,3 +667,57 @@
 // counter1.incrementCounter();  //1
 // counter1.incrementCounter();  //2
 // counter1.decrementCounter();  //1
+
+// this in global space
+// console.log(this)   // window object/global object
+// // this inside a function
+// function x(){
+// // the value depends on strict and non-strict mode (undefined and window resp)
+// console.log(this)
+// }
+// this in strict mode - this substitution
+// determined by how a function is called 
+// this inside a object's method
+// const obj={
+//     a:10,
+//     x:function(){
+//         console.log(this)
+//     }
+// }
+// obj.x();
+// call,apply, bind methods
+
+// const student={
+//     name:'Raj',
+//     printName:function(){
+//         console.log(this.name)
+//     }
+// }
+// student.printName();
+// const student2={
+//     name:'Deepika'
+// };
+// student.printName.call(student2)
+
+// this inside arrow function
+// const obj={
+//     a:10,
+//     x:() => {
+//         console.log(this)  // window obj (enclosed in lexical context)
+//     }
+// }
+// obj.x()
+
+// const obj2={
+//     a:20,
+//     y:function(){
+//     const x= () => {
+//         console.log(this)  // window obj (enclosed in lexical context)
+//     }
+//     x()
+// }
+// }
+// obj2.y()
+
+// this inside DOM
+
